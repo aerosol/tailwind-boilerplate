@@ -2,15 +2,25 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          "style-loader",
-          "css-loader"
-        ]
-      }
-    ]
+
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader'
+          }
+        },
+        {
+          test: /\.[s]?css$/,
+          use: [
+            'style-loader',
+            'css-loader',
+            'sass-loader',
+            'postcss-loader'
+          ],
+        }
+      ]
   },
 
   // https://webpack.js.org/concepts/entry-points/#multi-page-application
